@@ -13,6 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -38,15 +39,29 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun YeetButton(onClick: () -> Unit) {
     val localContext = LocalContext.current
-    val audioPlayer = MediaPlayer.create(localContext, R.raw.yeet1)
+    val randomNumber = (0..3).random()
+    val audioPlayer : MediaPlayer
+    if (randomNumber == 0 ){
+        audioPlayer = MediaPlayer.create(localContext, R.raw.yeet1)
+    }
+    else if (randomNumber == 1 ){
+        audioPlayer = MediaPlayer.create(localContext, R.raw.yeet2)
+    }
+    else if (randomNumber == 2 ){
+        audioPlayer = MediaPlayer.create(localContext, R.raw.yeet3)
+    }
+    else {
+        audioPlayer = MediaPlayer.create(localContext, R.raw.yeet4)
+    }
     ElevatedButton(onClick = { audioPlayer.start() }) {
         Text("Y33t!")
     }
+
 }
 @Composable
 fun Greeting(greeting: String, url: String, modifier: Modifier = Modifier) {
 
-    Column (verticalArrangement = Arrangement.Center, modifier = modifier){
+    Column (verticalArrangement = Arrangement.Center, modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally){
 
         Text(
             text = "$greeting",
