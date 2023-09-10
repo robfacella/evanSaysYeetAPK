@@ -7,7 +7,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -33,7 +35,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             EvanSaysYeetTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                Surface(modifier = Modifier.fillMaxSize(), color = Color.DarkGray)
+                {
                     Greeting("Evan says YEET!", "https://evansaysyeet.com/")
                 }
             }
@@ -48,10 +51,14 @@ fun YeetButton(onClick: () -> Unit, modifier: Modifier = Modifier) {
     var audioPlayer : MediaPlayer
 
     ElevatedButton(
-        onClick = { randomNumber = (0..3).random() },
-
+        onClick = { randomNumber = (0..4).random() },
+        colors = ButtonDefaults.buttonColors(Color.Cyan),
+        modifier = Modifier.height(96.dp).width(169.dp)
     ) {
-        Text("Y33t!")
+        Text("Y33t!",
+        fontSize = 42.sp,
+        color = Color.Black )
+
     }
     if (randomNumber == 0 ){
         audioPlayer = MediaPlayer.create(localContext, R.raw.yeet1)
@@ -68,6 +75,7 @@ fun YeetButton(onClick: () -> Unit, modifier: Modifier = Modifier) {
     audioPlayer.start()
 
 }
+
 @Composable
 fun Greeting(greeting: String, url: String, modifier: Modifier = Modifier) {
 
