@@ -1,5 +1,6 @@
 package com.example.evansaysyeet
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,12 +37,15 @@ class MainActivity : ComponentActivity() {
 }
 @Composable
 fun YeetButton(onClick: () -> Unit) {
-    ElevatedButton(onClick = { onClick() }) {
+    val localContext = LocalContext.current
+    val audioPlayer = MediaPlayer.create(localContext, R.raw.yeet1)
+    ElevatedButton(onClick = { audioPlayer.start() }) {
         Text("Y33t!")
     }
 }
 @Composable
 fun Greeting(greeting: String, url: String, modifier: Modifier = Modifier) {
+
     Column (verticalArrangement = Arrangement.Center, modifier = modifier){
 
         Text(
